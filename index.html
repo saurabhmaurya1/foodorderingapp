@@ -13,26 +13,32 @@
 
 <style>
 :root{
-  --off:#EDE1FF;
+  /* 💜 REAL LAVENDER THEME */
+  --off:#E4A0F7;        /* container lavender */
+  --bg:#F8F2FF;         /* page background */
   --forest:#2E5C4B;
   --beige:#F5EDE0;
   --brown:#8B6B4D;
-  --bg:#F6F0FF;
 
-  --line:#F0EBE4;
-  --ink:#183127;
-  --muted:#4D6B5E;
+  --line:#E9D8FD;       /* lavender borders */
+  --ink:#2D1B4E;        /* dark lavender text */
+  --muted:#6B5B95;      /* muted lavender */
 
-  /* ⭐ ADD THESE (missing variables) */
+  /* ⭐ Layout variables */
   --rTop: 28px;
   --rBottom: 28px;
-  --shadow: 0 30px 60px rgba(0,0,0,.18);
-  --shadowSoft: 0 10px 25px rgba(0,0,0,.10);
+  --shadow: 0 30px 60px rgba(124,58,237,.18);
+  --shadowSoft: 0 10px 25px rgba(124,58,237,.12);
   --navH: 82px;
   --pad: 18px;
   --ease: cubic-bezier(.2,.7,.2,1);
 }
 
+
+@keyframes shine {
+  0%   { background-position: 0% }
+  100% { background-position: 200% }
+}
 
     *{box-sizing:border-box}
     html,body{height:100%}
@@ -634,7 +640,10 @@
           </div>
           <button class="btn ghost small" data-navto="page-onboarding"><i class="fa-solid fa-arrow-left"></i> Back</button>
         </div>
-
+           <div class="tabs" id="loginRoleTabs">
+           <div class="tab active" data-role="user">👤 User</div>
+  <div class="tab" data-role="kitchen">🍳 Kitchen</div>
+</div>     
         <div class="card pad">
           <div class="h2">Continue with your phone</div>
           <div class="sub">We’ll send a 4-digit OTP. Demo OTP: <b>1234</b>.</div>
@@ -926,6 +935,60 @@
           Premium items are subtly gated with a lock—strong upgrade nudge without clutter.
         </div>
       </div>
+
+<!-- 🧠 DIABETIC CUSTOMIZATION PAGE -->
+<div class="page" id="page-diabetic">
+
+  <div class="toprow">
+    <div class="brand-mini">
+      <span style="width:34px;height:34px;border-radius:14px;background:rgba(46,92,75,.12);display:grid;place-items:center;border:1px solid rgba(46,92,75,.18);">
+        🧠
+      </span>
+      <div style="display:flex;flex-direction:column;line-height:1.05">
+        <span style="font-size:14px;font-weight:900;">Diabetic Customization</span>
+        <span style="font-size:11px;font-weight:700;color:rgba(77,107,94,.95)">
+          Personalized health settings
+        </span>
+      </div>
+    </div>
+
+    <button class="btn ghost small" data-navto="page-preferences">
+      ← Back
+    </button>
+  </div>
+
+  <div class="card pad">
+
+    <div class="h2">Customize your diabetic plan</div>
+    <div class="sub">We’ll adjust meals to control sugar levels.</div>
+
+    <div class="divider"></div>
+
+    <div class="kicker">Carb level</div>
+    <div class="pillrow" id="carbPills">
+      <div class="pill on" data-carb="Low">Low Carb</div>
+      <div class="pill" data-carb="Moderate">Moderate</div>
+      <div class="pill" data-carb="Strict">Strict Control</div>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="kicker">Sugar control</div>
+    <div class="pillrow" id="sugarPills">
+      <div class="pill on" data-sugar="No sugar">No Sugar</div>
+      <div class="pill" data-sugar="Natural only">Natural Only</div>
+    </div>
+
+    <div style="height:14px"></div>
+
+    <button class="btn primary" id="saveDiabeticBtn" style="width:100%">
+      Save customization
+    </button>
+
+  </div>
+
+</div>
+
 
       <!-- 6) SUBSCRIPTION -->
       <div class="page" id="page-subs">
@@ -1444,6 +1507,21 @@
   pillGroupToggle("dietPills", "diet");
   pillGroupToggle("mealPills", "meal");
 
+  document.querySelectorAll('#dietPills .pill').forEach(pill => {
+  pill.addEventListener("click", () => {
+
+    const val = pill.dataset.value;
+
+    // 🧠 If Diabetic selected → open new page
+    if(val === "Diabetic-friendly"){
+      setActive("page-diabetic");
+      showToast("Customize your diabetic meal plan.");
+    }
+
+  });
+});
+
+
   document.getElementById("savePrefsBtn").addEventListener("click", ()=>{
     setActive("page-home");
     const hasOffice = state.prefs.persona === "Office-goer";
@@ -1791,48 +1869,61 @@
   // 📅 PREMIUM CALENDAR CODE
   // ===============================
 
-  const openCalendarBtn = document.getElementById("openCalendar");
-  const calendarContainer = document.getElementById("calendarContainer");
-  const datePicker = document.getElementById("datePicker");
-  const selectedDatesDiv = document.getElementById("selectedDates");
+const openCalendarBtn = document.getElementById("openCalendar");
+const calendarContainer = document.getElementById("calendarContainer");
+const datePicker = document.getElementById("datePicker");
+const selectedDatesDiv = document.getElementById("selectedDates");
 
-  let selectedDates = [];
+let selectedDates = [];
 
-  if(openCalendarBtn){
-    openCalendarBtn.addEventListener("click", () => {
-      calendarContainer.style.display =
-        calendarContainer.style.display === "none" ? "block" : "none";
+// 📅 Open/close calendar
+if(openCalendarBtn){
+  openCalendarBtn.addEventListener("click", () => {
+    calendarContainer.style.display =
+      calendarContainer.style.display === "none" ? "block" : "none";
+  });
+}
+
+// 🥇 Date selection logic (ONLY ONE LISTENER)
+if (datePicker) {
+  datePicker.addEventListener("change", () => {
+    const date = datePicker.value;
+
+    // ⭐ Demo mode — allow selection even without subscription
+    if (!state.subscription.active) {
+      showToast("Demo mode: Premium unlocked.");
+    }
+
+    if (selectedDates.length >= 3) {
+      showToast("Only 3 days allowed.");
+      return;
+    }
+
+    if (selectedDates.includes(date)) return;
+
+    selectedDates.push(date);
+
+    selectedDatesDiv.innerHTML = "";
+
+    selectedDates.forEach(d => {
+      const pill = document.createElement("div");
+      pill.className = "pill";
+
+      // 🥇 PREMIUM GOLD STYLE
+      pill.style.background = "linear-gradient(135deg,#FFD700,#FFB800,#FFD700)";
+      pill.style.backgroundSize = "200% 200%";
+      pill.style.animation = "shine 3s linear infinite";
+
+      pill.style.color = "#000";
+      pill.style.fontWeight = "900";
+      pill.style.boxShadow = "0 6px 18px rgba(255,215,0,.6)";
+
+      pill.textContent = "⭐ " + d;
+      selectedDatesDiv.appendChild(pill);
     });
+  });
+}
 
-    datePicker.addEventListener("change", () => {
-      const date = datePicker.value;
-
-      if (!state.subscription.active) {
-        showToast("Premium users only.");
-        return;
-      }
-
-      if (selectedDates.length >= 3) {
-        showToast("Only 3 days allowed.");
-        return;
-      }
-
-      if (selectedDates.includes(date)) return;
-
-      selectedDates.push(date);
-
-      selectedDatesDiv.innerHTML = "";
-
-      selectedDates.forEach(d => {
-        const pill = document.createElement("div");
-        pill.className = "pill";
-        pill.style.background = "gold";
-        pill.style.fontWeight = "900";
-        pill.textContent = "⭐ " + d;
-        selectedDatesDiv.appendChild(pill);
-      });
-    });
-  }
 
 
   // ===============================
@@ -1870,8 +1961,12 @@
     });
   }
 
+document.getElementById("saveDiabeticBtn").addEventListener("click", () => {
+  showToast("Diabetic preferences saved ✅");
+  setActive("page-home");
+});
 
-})();   // ⭐ ONLY ONE closing at the very end
+})();
 
 </script>
 </body>
