@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <title>Green Dabba – Premium Meal Subscription (Interactive Mobile Demo)</title>
+  <title>Green Dabba – Fresh meal subscription (lively demo)</title>
 
   <!-- Allowed external deps: Google Fonts + Font Awesome -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -13,27 +13,26 @@
 
 <style>
 :root{
-  /* 💜 REAL LAVENDER THEME */
-  --off:#E4A0F7;        /* container lavender */
-  --bg:#F8F2FF;         /* page background */
-  --forest:#2E5C4B;
-  --beige:#F5EDE0;
-  --brown:#8B6B4D;
-
-  --line:#E9D8FD;       /* lavender borders */
-  --ink:#2D1B4E;        /* dark lavender text */
-  --muted:#6B5B95;      /* muted lavender */
+  /* 🥑 Fresh food & green palette – appetizing, calm, lively */
+  --bg: #F1F9F4;              /* soft mint background */
+  --off: #F9FDFA;             /* card / container background (almost white with green hint) */
+  --forest: #1E8A5C;          /* vibrant green – primary brand */
+  --forest-dark: #166943;     /* deeper green for gradients */
+  --beige: #FDF3E0;           /* warm beige – secondary, tags */
+  --brown: #B48C5C;           /* warm wood brown */
+  --line: #D0E6DA;            /* soft border (greenish) */
+  --ink: #1C3B2F;             /* dark green-black text */
+  --muted: #547A68;           /* muted sage */
 
   /* ⭐ Layout variables */
   --rTop: 28px;
   --rBottom: 28px;
-  --shadow: 0 30px 60px rgba(124,58,237,.18);
-  --shadowSoft: 0 10px 25px rgba(124,58,237,.12);
+  --shadow: 0 20px 40px rgba(30, 138, 92, 0.15);
+  --shadowSoft: 0 8px 20px rgba(30, 138, 92, 0.08);
   --navH: 82px;
   --pad: 18px;
   --ease: cubic-bezier(.2,.7,.2,1);
 }
-
 
 @keyframes shine {
   0%   { background-position: 0% }
@@ -62,17 +61,17 @@
       box-shadow: var(--shadow);
       overflow:hidden;
       position: relative;
-      border: 1px solid rgba(0,0,0,.06);
+      border: 1px solid rgba(0,0,0,.04);
     }
     .device:before{
       content:"";
       position:absolute; inset:0;
       border-radius: inherit;
       pointer-events:none;
-      box-shadow: inset 0 0 0 1px rgba(255,255,255,.35);
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,.5);
     }
 
-    /* Status bar */
+    /* Status bar – fresh beige blend */
     .statusbar{
       height: 46px;
       display:flex;
@@ -81,9 +80,9 @@
       padding: 10px 18px 8px;
       font-weight: 700;
       letter-spacing:.2px;
-      color: rgba(24,49,39,.92);
+      color: var(--ink);
       user-select:none;
-      background: linear-gradient(180deg, rgba(245,237,224,.85), rgba(250,247,242,.85));
+      background: linear-gradient(180deg, rgba(253, 243, 224, 0.9), rgba(249, 253, 250, 0.9));
       border-bottom: 1px solid rgba(0,0,0,.04);
       backdrop-filter: blur(8px);
     }
@@ -91,7 +90,7 @@
     .sb-right i{opacity:.9}
     .time{font-size: 13px}
 
-    /* Page container */
+    /* Page container – subtle gradient with warm and green tones */
     .page-container{
       position:absolute;
       left:0; right:0;
@@ -99,8 +98,8 @@
       bottom: var(--navH);
       overflow:hidden;
       background:
-        radial-gradient(900px 700px at 10% 0%, rgba(46,92,75,.09), transparent 55%),
-        radial-gradient(900px 700px at 90% 10%, rgba(139,107,77,.10), transparent 50%),
+        radial-gradient(900px 700px at 10% 0%, rgba(30,138,92,0.08), transparent 55%),
+        radial-gradient(900px 700px at 90% 10%, rgba(180,140,92,0.08), transparent 50%),
         var(--off);
     }
 
@@ -143,16 +142,16 @@
       padding: 8px 10px;
       border-radius: 999px;
       border: 1px solid var(--line);
-      background: rgba(245,237,224,.65);
-      color: rgba(24,49,39,.92);
+      background: var(--beige);
+      color: var(--ink);
       font-size: 12px;
       font-weight: 700;
       box-shadow: var(--shadowSoft);
       white-space: nowrap;
     }
     .badge.leaf{
-      border-color: rgba(46,92,75,.18);
-      background: rgba(46,92,75,.08);
+      border-color: rgba(30,138,92,.2);
+      background: rgba(30,138,92,.1);
       color: var(--forest);
     }
 
@@ -162,17 +161,17 @@
       line-height: 1.15;
       font-weight: 800;
       letter-spacing: -.2px;
-      color: rgba(24,49,39,.98);
+      color: var(--ink);
     }
     .h2{
       font-size: 18px;
       line-height: 1.2;
       font-weight: 800;
       letter-spacing: -.15px;
-      color: rgba(24,49,39,.98);
+      color: var(--ink);
     }
     .sub{
-      color: rgba(77,107,94,.95);
+      color: var(--muted);
       font-size: 13px;
       line-height: 1.55;
       font-weight: 500;
@@ -182,12 +181,12 @@
       font-size: 11px;
       text-transform: uppercase;
       letter-spacing: .7px;
-      color: rgba(77,107,94,.95);
+      color: var(--muted);
       font-weight: 800;
       margin-bottom: 8px;
     }
 
-    /* Buttons */
+    /* Buttons – fresh gradients */
     .btn{
       border: none;
       outline: none;
@@ -202,48 +201,48 @@
     }
     .btn:active{transform: scale(.98)}
     .btn.primary{
-      background: linear-gradient(135deg, var(--forest), #244C3D);
+      background: linear-gradient(135deg, var(--forest), #166943);
       color: white;
-      box-shadow: 0 14px 30px rgba(46,92,75,.22);
+      box-shadow: 0 12px 28px rgba(30,138,92,.25);
     }
     .btn.primary:active{transform: scale(.985)}
     .btn.secondary{
-      background: rgba(245,237,224,.85);
+      background: var(--beige);
       border: 1px solid var(--line);
-      color: rgba(24,49,39,.92);
+      color: var(--ink);
       box-shadow: var(--shadowSoft);
     }
     .btn.ghost{
       background: transparent;
-      border: 1px solid rgba(46,92,75,.22);
+      border: 1px solid rgba(30,138,92,.25);
       color: var(--forest);
     }
     .btn.small{padding: 10px 12px; border-radius: 14px; font-size: 13px}
 
     /* Inputs */
     .field{display:grid; gap:8px; margin-top: 14px}
-    .label{font-size: 12px; font-weight: 800; color: rgba(77,107,94,.95)}
+    .label{font-size: 12px; font-weight: 800; color: var(--muted)}
     .input{
       width:100%;
       padding: 12px 12px;
       border-radius: 16px;
       border: 1px solid var(--line);
-      background: rgba(255,255,255,.72);
+      background: rgba(255,255,255,.8);
       font-weight: 600;
-      color: rgba(24,49,39,.92);
+      color: var(--ink);
       outline: none;
       box-shadow: var(--shadowSoft);
     }
     .input:focus{
-      border-color: rgba(46,92,75,.30);
-      box-shadow: 0 0 0 4px rgba(46,92,75,.12), var(--shadowSoft);
+      border-color: rgba(30,138,92,.3);
+      box-shadow: 0 0 0 4px rgba(30,138,92,.15), var(--shadowSoft);
     }
 
-    /* Cards */
+    /* Cards – clean white with warm shadow */
     .card{
       border: 1px solid var(--line);
       border-radius: 22px;
-      background: rgba(255,255,255,.72);
+      background: rgba(255,255,255,.9);
       box-shadow: var(--shadowSoft);
       overflow:hidden;
       transform: translateY(0);
@@ -252,7 +251,7 @@
     .card:active{transform: translateY(1px) scale(.995)}
     .card.pad{padding: 14px}
     .card.soft{
-      background: rgba(245,237,224,.62);
+      background: var(--beige);
     }
 
     .row{display:flex; align-items:center; gap:12px}
@@ -280,32 +279,32 @@
     }
     .thumb img{width:100%; height:100%; object-fit:cover; display:block}
 
-    /* Tags */
+    /* Tags – warmer & lively */
     .tags{display:flex; flex-wrap:wrap; gap:8px; margin-top: 10px}
     .tag{
       display:inline-flex; align-items:center; gap:7px;
       padding: 7px 10px;
       border-radius: 999px;
       border: 1px solid var(--line);
-      background: rgba(245,237,224,.60);
+      background: var(--beige);
       font-size: 12px;
       font-weight: 800;
-      color: rgba(24,49,39,.88);
+      color: var(--ink);
       white-space: nowrap;
     }
-    .tag.good{background: rgba(46,92,75,.10); border-color: rgba(46,92,75,.18); color: var(--forest)}
-    .tag.warn{background: rgba(139,107,77,.11); border-color: rgba(139,107,77,.22); color: var(--brown)}
+    .tag.good{background: rgba(30,138,92,.12); border-color: rgba(30,138,92,.2); color: var(--forest)}
+    .tag.warn{background: rgba(180,140,92,.12); border-color: rgba(180,140,92,.2); color: var(--brown)}
     .tag.lock{background: rgba(0,0,0,.06); border-color: rgba(0,0,0,.12); color: rgba(0,0,0,.55)}
     .tag.dark{background: rgba(24,49,39,.06); border-color: rgba(24,49,39,.14); color: rgba(24,49,39,.74)}
 
     .divider{height:1px; background: var(--line); margin: 14px 0}
 
-    /* Bottom nav */
+    /* Bottom nav – warm beige blend */
     .bottom-nav{
       position:absolute;
       left:0; right:0; bottom:0;
       height: var(--navH);
-      background: rgba(250,247,242,.92);
+      background: rgba(253, 243, 224, 0.92);
       border-top: 1px solid rgba(0,0,0,.06);
       padding: 10px 16px 14px;
       display:flex;
@@ -328,7 +327,7 @@
       gap:6px;
       font-size: 11px;
       font-weight: 800;
-      color: rgba(77,107,94,.95);
+      color: var(--muted);
       transition: transform .10s var(--ease), background .12s var(--ease);
       user-select:none;
     }
@@ -336,8 +335,8 @@
     .navbtn:active{transform: scale(.98)}
     .navbtn.active{
       color: var(--forest);
-      background: rgba(46,92,75,.10);
-      border: 1px solid rgba(46,92,75,.14);
+      background: rgba(30,138,92,.12);
+      border: 1px solid rgba(30,138,92,.18);
     }
 
     /* Toast */
@@ -346,7 +345,7 @@
       left:50%;
       transform: translateX(-50%);
       bottom: calc(var(--navH) + 14px);
-      background: rgba(24,49,39,.92);
+      background: var(--ink);
       color: white;
       padding: 10px 12px;
       border-radius: 16px;
@@ -364,12 +363,12 @@
       transform: translateX(-50%) translateY(-2px);
     }
 
-    /* Pills */
+    /* Pills – fresh */
     .pillrow{display:flex; flex-wrap:wrap; gap:10px; margin-top: 10px}
     .pill{
       border: 1px solid var(--line);
-      background: rgba(255,255,255,.70);
-      color: rgba(24,49,39,.90);
+      background: white;
+      color: var(--ink);
       padding: 10px 12px;
       border-radius: 999px;
       font-weight: 800;
@@ -381,8 +380,8 @@
     }
     .pill:active{transform: scale(.985)}
     .pill.on{
-      border-color: rgba(46,92,75,.26);
-      background: rgba(46,92,75,.10);
+      border-color: rgba(30,138,92,.3);
+      background: rgba(30,138,92,.1);
       color: var(--forest);
     }
 
@@ -394,7 +393,7 @@
       padding: 10px 10px;
       border-radius: 16px;
       border: 1px solid var(--line);
-      background: rgba(255,255,255,.72);
+      background: white;
       font-weight: 900;
       font-size: 13px;
       cursor:pointer;
@@ -404,8 +403,8 @@
     }
     .tab:active{transform: scale(.985)}
     .tab.active{
-      border-color: rgba(46,92,75,.26);
-      background: rgba(46,92,75,.10);
+      border-color: rgba(30,138,92,.3);
+      background: rgba(30,138,92,.1);
       color: var(--forest);
     }
 
@@ -414,7 +413,7 @@
       border: 1px solid var(--line);
       border-radius: 22px;
       padding: 14px;
-      background: rgba(255,255,255,.72);
+      background: white;
       box-shadow: var(--shadowSoft);
       cursor:pointer;
       user-select:none;
@@ -422,8 +421,8 @@
     }
     .plan:active{transform: translateY(1px) scale(.995)}
     .plan.selected{
-      border-color: rgba(46,92,75,.30);
-      box-shadow: 0 6px 0 rgba(0,0,0,0.02), 0 0 0 4px rgba(46,92,75,.12);
+      border-color: rgba(30,138,92,.3);
+      box-shadow: 0 6px 0 rgba(0,0,0,0.02), 0 0 0 4px rgba(30,138,92,.12);
     }
     .planhead{display:flex; align-items:flex-start; gap:12px}
     .price{
@@ -434,7 +433,7 @@
     }
     .mini{
       font-size: 12px;
-      color: rgba(77,107,94,.95);
+      color: var(--muted);
       font-weight: 600;
       margin-top: 2px;
       line-height: 1.4;
@@ -479,8 +478,8 @@
       display:flex; align-items:center; gap:10px;
       padding: 10px 12px;
       border-radius: 18px;
-      border: 1px solid rgba(46,92,75,.16);
-      background: rgba(46,92,75,.08);
+      border: 1px solid rgba(30,138,92,.2);
+      background: rgba(30,138,92,.08);
       color: var(--forest);
       font-weight: 800;
       font-size: 13px;
@@ -490,7 +489,7 @@
     .dot{
       width: 5px; height: 5px;
       border-radius: 999px;
-      background: rgba(46,92,75,.95);
+      background: var(--forest);
       opacity:.35;
       animation: pulse 1.1s infinite;
     }
@@ -507,10 +506,10 @@
       border-radius: 22px;
       border: 1px solid rgba(0,0,0,.05);
       background:
-        radial-gradient(140px 110px at 20% 40%, rgba(46,92,75,.18), transparent 60%),
-        radial-gradient(180px 130px at 75% 35%, rgba(139,107,77,.14), transparent 62%),
+        radial-gradient(140px 110px at 20% 40%, rgba(30,138,92,.18), transparent 60%),
+        radial-gradient(180px 130px at 75% 35%, rgba(180,140,92,.14), transparent 62%),
         repeating-linear-gradient(45deg, rgba(0,0,0,.04) 0 10px, transparent 10px 20px),
-        rgba(255,255,255,.60);
+        rgba(255,248,240,.8);
       position: relative;
       overflow:hidden;
       box-shadow: var(--shadowSoft);
@@ -520,10 +519,10 @@
       width: 12px; height: 12px;
       border-radius: 999px;
       background: var(--forest);
-      box-shadow: 0 0 0 7px rgba(46,92,75,.14);
+      box-shadow: 0 0 0 7px rgba(30,138,92,.14);
     }
     .pin.rider{left: 34%; top: 58%}
-    .pin.you{right: 20%; top: 40%; background: var(--brown); box-shadow: 0 0 0 7px rgba(139,107,77,.15)}
+    .pin.you{right: 20%; top: 40%; background: var(--brown); box-shadow: 0 0 0 7px rgba(180,140,92,.15)}
     .route{
       position:absolute;
       left: 34%; top: 58%;
@@ -545,7 +544,7 @@
 
     /* Utility */
     .stack{display:grid; gap:12px}
-    .muted{color: rgba(77,107,94,.95)}
+    .muted{color: var(--muted)}
     .tiny{font-size: 12px; line-height:1.5}
 
     @media (prefers-reduced-motion: reduce){
@@ -571,12 +570,12 @@
       <div class="page active" id="page-onboarding">
         <div class="toprow">
           <div class="brand-mini">
-            <span style="width:34px;height:34px;border-radius:14px;background:rgba(46,92,75,.12);display:grid;place-items:center;border:1px solid rgba(46,92,75,.18);">
+            <span style="width:34px;height:34px;border-radius:14px;background:rgba(30,138,92,.12);display:grid;place-items:center;border:1px solid rgba(30,138,92,.18);">
               <i class="fa-solid fa-leaf" style="color:var(--forest)"></i>
             </span>
             <div style="display:flex;flex-direction:column;line-height:1.05">
               <span style="font-size:14px;font-weight:900;letter-spacing:.2px;">GREEN DABBA</span>
-              <span style="font-size:11px;font-weight:700;color:rgba(77,107,94,.95)">Premium meal subscription</span>
+              <span style="font-size:11px;font-weight:700;color:var(--muted)">Premium meal subscription</span>
             </div>
           </div>
           <span class="badge leaf"><i class="fa-solid fa-recycle"></i> Eco-first</span>
@@ -597,7 +596,7 @@
 
         <div class="card pad soft">
           <div class="row">
-            <div style="width:40px;height:40px;border-radius:16px;background:rgba(46,92,75,.10);display:grid;place-items:center;border:1px solid rgba(46,92,75,.18)">
+            <div style="width:40px;height:40px;border-radius:16px;background:rgba(30,138,92,.10);display:grid;place-items:center;border:1px solid rgba(30,138,92,.18)">
               <i class="fa-solid fa-shield-heart" style="color:var(--forest)"></i>
             </div>
             <div class="sp">
@@ -630,12 +629,12 @@
       <div class="page" id="page-login">
         <div class="toprow">
           <div class="brand-mini">
-            <span style="width:34px;height:34px;border-radius:14px;background:rgba(46,92,75,.12);display:grid;place-items:center;border:1px solid rgba(46,92,75,.18);">
+            <span style="width:34px;height:34px;border-radius:14px;background:rgba(30,138,92,.12);display:grid;place-items:center;border:1px solid rgba(30,138,92,.18);">
               <i class="fa-solid fa-leaf" style="color:var(--forest)"></i>
             </span>
             <div style="display:flex;flex-direction:column;line-height:1.05">
               <span style="font-size:14px;font-weight:900;letter-spacing:.2px;">Login</span>
-              <span style="font-size:11px;font-weight:700;color:rgba(77,107,94,.95)">Fast & trusted OTP</span>
+              <span style="font-size:11px;font-weight:700;color:var(--muted)">Fast & trusted OTP</span>
             </div>
           </div>
           <button class="btn ghost small" data-navto="page-onboarding"><i class="fa-solid fa-arrow-left"></i> Back</button>
@@ -688,12 +687,12 @@
       <div class="page" id="page-preferences">
         <div class="toprow">
           <div class="brand-mini">
-            <span style="width:34px;height:34px;border-radius:14px;background:rgba(46,92,75,.12);display:grid;place-items:center;border:1px solid rgba(46,92,75,.18);">
+            <span style="width:34px;height:34px;border-radius:14px;background:rgba(30,138,92,.12);display:grid;place-items:center;border:1px solid rgba(30,138,92,.18);">
               <i class="fa-solid fa-sliders" style="color:var(--forest)"></i>
             </span>
             <div style="display:flex;flex-direction:column;line-height:1.05">
               <span style="font-size:14px;font-weight:900;letter-spacing:.2px;">Your preferences</span>
-              <span style="font-size:11px;font-weight:700;color:rgba(77,107,94,.95)">Personalization (core USP)</span>
+              <span style="font-size:11px;font-weight:700;color:var(--muted)">Personalization (core USP)</span>
             </div>
           </div>
           <span class="badge"><i class="fa-solid fa-wand-magic-sparkles"></i> 60 sec setup</span>
@@ -747,8 +746,8 @@
               <span class="badge leaf"><i class="fa-solid fa-indian-rupee-sign"></i> Smart</span>
             </div>
             <div style="margin-top:12px; height:10px; border-radius:999px; background: rgba(0,0,0,.06); position:relative">
-              <div style="position:absolute; left: 0; top:0; bottom:0; width: 62%; border-radius:999px; background: rgba(46,92,75,.25)"></div>
-              <div style="position:absolute; left: 60%; top: 50%; transform: translateY(-50%); width: 18px; height: 18px; border-radius: 999px; background: var(--forest); box-shadow: 0 0 0 6px rgba(46,92,75,.14)"></div>
+              <div style="position:absolute; left: 0; top:0; bottom:0; width: 62%; border-radius:999px; background: rgba(30,138,92,.25)"></div>
+              <div style="position:absolute; left: 60%; top: 50%; transform: translateY(-50%); width: 18px; height: 18px; border-radius: 999px; background: var(--forest); box-shadow: 0 0 0 6px rgba(30,138,92,.14)"></div>
             </div>
           </div>
 
@@ -768,12 +767,12 @@
       <div class="page" id="page-home">
         <div class="toprow">
           <div class="brand-mini">
-            <span style="width:34px;height:34px;border-radius:14px;background:rgba(46,92,75,.12);display:grid;place-items:center;border:1px solid rgba(46,92,75,.18);">
+            <span style="width:34px;height:34px;border-radius:14px;background:rgba(30,138,92,.12);display:grid;place-items:center;border:1px solid rgba(30,138,92,.18);">
               <i class="fa-solid fa-bowl-food" style="color:var(--forest)"></i>
             </span>
             <div style="display:flex;flex-direction:column;line-height:1.05">
               <span style="font-size:14px;font-weight:900;letter-spacing:.2px;">Good Morning, <span id="userNameHome">Jahnvee</span></span>
-              <span style="font-size:11px;font-weight:700;color:rgba(77,107,94,.95)">Your routine dashboard</span>
+              <span style="font-size:11px;font-weight:700;color:var(--muted)">Your routine dashboard</span>
             </div>
           </div>
           <span class="badge leaf"><i class="fa-solid fa-clock"></i> ETA 1:12 PM</span>
@@ -877,7 +876,7 @@
 
         <div class="card pad soft">
           <div class="row">
-            <div style="width:44px;height:44px;border-radius:18px;background:rgba(46,92,75,.10);display:grid;place-items:center;border:1px solid rgba(46,92,75,.18)">
+            <div style="width:44px;height:44px;border-radius:18px;background:rgba(30,138,92,.10);display:grid;place-items:center;border:1px solid rgba(30,138,92,.18)">
               <i class="fa-solid fa-earth-asia" style="color:var(--forest)"></i>
             </div>
             <div class="sp">
@@ -901,16 +900,16 @@
         </div>
       </div>
 
-      <!-- 5) MEALS -->
+      <!-- 5) MEALS (with extra images) -->
       <div class="page" id="page-meals">
         <div class="toprow">
           <div class="brand-mini">
-            <span style="width:34px;height:34px;border-radius:14px;background:rgba(46,92,75,.12);display:grid;place-items:center;border:1px solid rgba(46,92,75,.18);">
+            <span style="width:34px;height:34px;border-radius:14px;background:rgba(30,138,92,.12);display:grid;place-items:center;border:1px solid rgba(30,138,92,.18);">
               <i class="fa-solid fa-utensils" style="color:var(--forest)"></i>
             </span>
             <div style="display:flex;flex-direction:column;line-height:1.05">
               <span style="font-size:14px;font-weight:900;letter-spacing:.2px;">Meals</span>
-              <span style="font-size:11px;font-weight:700;color:rgba(77,107,94,.95)">Clean menu experience</span>
+              <span style="font-size:11px;font-weight:700;color:var(--muted)">Clean menu experience</span>
             </div>
           </div>
           <span class="badge leaf"><i class="fa-solid fa-leaf"></i> Included-first</span>
@@ -941,12 +940,12 @@
 
   <div class="toprow">
     <div class="brand-mini">
-      <span style="width:34px;height:34px;border-radius:14px;background:rgba(46,92,75,.12);display:grid;place-items:center;border:1px solid rgba(46,92,75,.18);">
+      <span style="width:34px;height:34px;border-radius:14px;background:rgba(30,138,92,.12);display:grid;place-items:center;border:1px solid rgba(30,138,92,.18);">
         🧠
       </span>
       <div style="display:flex;flex-direction:column;line-height:1.05">
         <span style="font-size:14px;font-weight:900;">Diabetic Customization</span>
-        <span style="font-size:11px;font-weight:700;color:rgba(77,107,94,.95)">
+        <span style="font-size:11px;font-weight:700;color:var(--muted)">
           Personalized health settings
         </span>
       </div>
@@ -1011,12 +1010,12 @@
 </div>
 
           <div class="brand-mini">
-            <span style="width:34px;height:34px;border-radius:14px;background:rgba(46,92,75,.12);display:grid;place-items:center;border:1px solid rgba(46,92,75,.18);">
+            <span style="width:34px;height:34px;border-radius:14px;background:rgba(30,138,92,.12);display:grid;place-items:center;border:1px solid rgba(30,138,92,.18);">
               <i class="fa-solid fa-rotate" style="color:var(--forest)"></i>
             </span>
             <div style="display:flex;flex-direction:column;line-height:1.05">
               <span style="font-size:14px;font-weight:900;letter-spacing:.2px;">Subscription</span>
-              <span style="font-size:11px;font-weight:700;color:rgba(77,107,94,.95)">Revenue engine</span>
+              <span style="font-size:11px;font-weight:700;color:var(--muted)">Revenue engine</span>
             </div>
           </div>
           <span class="badge"><i class="fa-solid fa-tags"></i> Savings</span>
@@ -1055,12 +1054,12 @@
       <div class="page" id="page-payment">
         <div class="toprow">
           <div class="brand-mini">
-            <span style="width:34px;height:34px;border-radius:14px;background:rgba(46,92,75,.12);display:grid;place-items:center;border:1px solid rgba(46,92,75,.18);">
+            <span style="width:34px;height:34px;border-radius:14px;background:rgba(30,138,92,.12);display:grid;place-items:center;border:1px solid rgba(30,138,92,.18);">
               <i class="fa-solid fa-credit-card" style="color:var(--forest)"></i>
             </span>
             <div style="display:flex;flex-direction:column;line-height:1.05">
               <span style="font-size:14px;font-weight:900;letter-spacing:.2px;">Checkout</span>
-              <span style="font-size:11px;font-weight:700;color:rgba(77,107,94,.95)">Secure payment</span>
+              <span style="font-size:11px;font-weight:700;color:var(--muted)">Secure payment</span>
             </div>
           </div>
           <button class="btn ghost small" data-navto="page-subs"><i class="fa-solid fa-arrow-left"></i> Back</button>
@@ -1121,7 +1120,7 @@
 
           <div id="paySuccess" class="card pad soft" style="display:none; margin-top:12px">
             <div class="row">
-              <div style="width:46px;height:46px;border-radius:18px;background:rgba(46,92,75,.12);display:grid;place-items:center;border:1px solid rgba(46,92,75,.18)">
+              <div style="width:46px;height:46px;border-radius:18px;background:rgba(30,138,92,.12);display:grid;place-items:center;border:1px solid rgba(30,138,92,.18)">
                 <i class="fa-solid fa-circle-check" style="color:var(--forest); font-size:22px"></i>
               </div>
               <div class="sp">
@@ -1140,12 +1139,12 @@
       <div class="page" id="page-track">
         <div class="toprow">
           <div class="brand-mini">
-            <span style="width:34px;height:34px;border-radius:14px;background:rgba(46,92,75,.12);display:grid;place-items:center;border:1px solid rgba(46,92,75,.18);">
+            <span style="width:34px;height:34px;border-radius:14px;background:rgba(30,138,92,.12);display:grid;place-items:center;border:1px solid rgba(30,138,92,.18);">
               <i class="fa-solid fa-motorcycle" style="color:var(--forest)"></i>
             </span>
             <div style="display:flex;flex-direction:column;line-height:1.05">
               <span style="font-size:14px;font-weight:900;letter-spacing:.2px;">Live tracking</span>
-              <span style="font-size:11px;font-weight:700;color:rgba(77,107,94,.95)">Minimal, calm map</span>
+              <span style="font-size:11px;font-weight:700;color:var(--muted)">Minimal, calm map</span>
             </div>
           </div>
           <span class="badge leaf"><i class="fa-solid fa-location-dot"></i> 1.2 km</span>
@@ -1167,7 +1166,7 @@
 
         <div class="card pad soft">
           <div class="row">
-            <div style="width:44px;height:44px;border-radius:18px;background:rgba(46,92,75,.10);display:grid;place-items:center;border:1px solid rgba(46,92,75,.18)">
+            <div style="width:44px;height:44px;border-radius:18px;background:rgba(30,138,92,.10);display:grid;place-items:center;border:1px solid rgba(30,138,92,.18)">
               <i class="fa-solid fa-recycle" style="color:var(--forest)"></i>
             </div>
             <div class="sp">
@@ -1203,7 +1202,7 @@
   width: 60px;
   height: 60px;
   border-radius: 50%;
-  background: linear-gradient(135deg,#7C3AED,#A78BFA);
+  background: linear-gradient(135deg,#1E8A5C,#34A67E);
   display: grid;
   place-items: center;
   color: white;
@@ -1227,7 +1226,7 @@
   flex-direction: column;
   overflow: hidden;
   z-index: 1000;">
-  <div style="background:#7C3AED;color:white;padding:12px;font-weight:900;text-align:center;">
+  <div style="background:#1E8A5C;color:white;padding:12px;font-weight:900;text-align:center;">
     Green Dabba Assistant
   </div>
 
@@ -1243,12 +1242,12 @@
 
         <div class="toprow">
           <div class="brand-mini">
-            <span style="width:34px;height:34px;border-radius:14px;background:rgba(46,92,75,.12);display:grid;place-items:center;border:1px solid rgba(46,92,75,.18);">
+            <span style="width:34px;height:34px;border-radius:14px;background:rgba(30,138,92,.12);display:grid;place-items:center;border:1px solid rgba(30,138,92,.18);">
               <i class="fa-solid fa-user" style="color:var(--forest)"></i>
             </span>
             <div style="display:flex;flex-direction:column;line-height:1.05">
               <span style="font-size:14px;font-weight:900;letter-spacing:.2px;">Profile</span>
-              <span style="font-size:11px;font-weight:700;color:rgba(77,107,94,.95)">Your stats & impact</span>
+              <span style="font-size:11px;font-weight:700;color:var(--muted)">Your stats & impact</span>
             </div>
           </div>
           <span class="badge" id="subStatusBadge"><i class="fa-solid fa-circle-dot"></i> Trial</span>
@@ -1256,7 +1255,7 @@
 
         <div class="card pad">
           <div class="row">
-            <div style="width:56px;height:56px;border-radius:22px;background:rgba(46,92,75,.10);border:1px solid rgba(46,92,75,.18);display:grid;place-items:center">
+            <div style="width:56px;height:56px;border-radius:22px;background:rgba(30,138,92,.10);border:1px solid rgba(30,138,92,.18);display:grid;place-items:center">
               <i class="fa-solid fa-user" style="font-size:22px; color:var(--forest)"></i>
             </div>
             <div class="sp">
@@ -1311,9 +1310,9 @@
 
           <div class="divider"></div>
 
-          <div class="card pad" style="background: rgba(245,237,224,.62)">
+          <div class="card pad" style="background: var(--beige)">
             <div class="row">
-              <div style="width:44px;height:44px;border-radius:18px;background:rgba(139,107,77,.12);display:grid;place-items:center;border:1px solid rgba(139,107,77,.20)">
+              <div style="width:44px;height:44px;border-radius:18px;background:rgba(180,140,92,.12);display:grid;place-items:center;border:1px solid rgba(180,140,92,.20)">
                 <i class="fa-solid fa-kitchen-set" style="color:var(--brown)"></i>
               </div>
               <div class="sp">
@@ -1367,14 +1366,18 @@
   const nav = document.getElementById("bottomNav");
   const toastEl = document.getElementById("toast");
 
-  // Unsplash photos (exact IDs requested)
+  // Unsplash photos – added more food images for variety (Indian cuisine)
   const IMG = {
     thali: "https://images.unsplash.com/photo-1585937421612-70a008356fbe?auto=format&fit=crop&w=1200&q=80",
     dosa: "https://images.unsplash.com/photo-1484723091739-30a097e8f929?auto=format&fit=crop&w=1200&q=80",
     kadhi: "https://images.unsplash.com/photo-1603894584373-5ac82b2ae398?auto=format&fit=crop&w=1200&q=80",
     chole: "https://images.unsplash.com/photo-1606491956689-2ea866880c84?auto=format&fit=crop&w=1200&q=80",
     premium: "https://images.unsplash.com/photo-1567188040755-1e7fa3f3b1b5?auto=format&fit=crop&w=1200&q=80",
-    tiffin: "https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=1200&q=80"
+    tiffin: "https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=1200&q=80",
+    // new lively food images
+    biryani: "https://images.unsplash.com/photo-1589302168068-964664d93dc0?auto=format&fit=crop&w=1200&q=80",
+    paneer: "https://images.unsplash.com/photo-1631452180519-c014fe946bc7?auto=format&fit=crop&w=1200&q=80",
+    idli: "https://images.unsplash.com/photo-1589301760014-d929f3979dbc?auto=format&fit=crop&w=1200&q=80"
   };
 
   const state = {
@@ -1628,9 +1631,10 @@
     const list = document.getElementById("mealList");
     list.innerHTML = "";
 
+    // Use new images for variety
     const breakfast = [
-      {title:"Crisp Dosa · Coconut Chutney", desc:"Light, clean start · hygienic kitchen", img: IMG.dosa, kcal: 420, tags:["Included","Eco"]},
-      {title:"Protein Bowl · Seasonal fruit", desc:"Balanced macros · minimal oil", img: IMG.premium, kcal: 390, tags:["High Protein","Low Oil","Eco"]},
+      {title:"Crisp Dosa · Coconut Chutney", desc:"Light, clean start · hygienic kitchen", img: IMG.idli || IMG.dosa, kcal: 420, tags:["Included","Eco"]},
+      {title:"Protein Bowl · Seasonal fruit", desc:"Balanced macros · minimal oil", img: IMG.paneer, kcal: 390, tags:["High Protein","Low Oil","Eco"]},
       {title:"Classic South Tiffin Combo", desc:"Idli + sambar · comforting", img: IMG.dosa, kcal: 460, tags:["Included","Low Oil"]}
     ];
     const lunch = [
@@ -1639,7 +1643,7 @@
       {title:"Chole · 2 Rotis", desc:"Protein-rich · hygienic SOP", img: IMG.chole, kcal: 520, tags:["Included","High Protein"]}
     ];
     const dinner = [
-      {title:"Light Dinner Bowl", desc:"Low oil · easy digestion", img: IMG.premium, kcal: 410, tags:["Low Oil","Eco"]},
+      {title:"Light Dinner Bowl", desc:"Low oil · easy digestion", img: IMG.biryani, kcal: 410, tags:["Low Oil","Eco"]},
       {title:"Comfort Kadhi Dinner", desc:"Warm & calming · routine-friendly", img: IMG.kadhi, kcal: 440, tags:["Included","Low Oil"]},
       {title:"Chef’s Premium Platter", desc:"Limited availability · upgrades only", img: IMG.premium, kcal: 620, tags:["Premium","Eco"], locked:true}
     ];
@@ -1648,7 +1652,7 @@
 
     // Always include ONE locked premium card on Lunch tab too (strong upgrade nudge)
     if(activeMealTab === "Lunch"){
-      list.appendChild(mealCard({title:"Chef’s Premium Thali+", desc:"Better ingredients · limited slots", img: IMG.premium, kcal: 650, tags:["Premium","Eco"], locked:true}));
+      list.appendChild(mealCard({title:"Chef’s Premium Thali+", desc:"Better ingredients · limited slots", img: IMG.paneer, kcal: 650, tags:["Premium","Eco"], locked:true}));
     }
 
     data.forEach(item => list.appendChild(mealCard(item)));
@@ -1669,7 +1673,7 @@
       el.className = "plan" + (state.subscription.planId === p.id ? " selected" : "");
       el.innerHTML = `
         <div class="planhead">
-          <div style="width:44px;height:44px;border-radius:18px;background:rgba(46,92,75,.10);border:1px solid rgba(46,92,75,.18);display:grid;place-items:center; flex:none">
+          <div style="width:44px;height:44px;border-radius:18px;background:rgba(30,138,92,.10);border:1px solid rgba(30,138,92,.18);display:grid;place-items:center; flex:none">
             <i class="fa-solid fa-leaf" style="color:var(--forest)"></i>
           </div>
           <div class="sp">
