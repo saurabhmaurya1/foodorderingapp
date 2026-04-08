@@ -1,143 +1,138 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Will you be my Valentine?</title>
-    <style>
-        /* CSS: Styling the vibe */
-        body {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            height: 100vh;
-            margin: 0;
-            background-color: #fce4ec; /* Light pink background */
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            overflow: hidden;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Will you be my Valentine? ❤️</title>
 
-        .container {
-            text-align: center;
-        }
+<style>
+    body {
+        margin: 0;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+        font-family: 'Poppins', sans-serif;
+        overflow: hidden;
+    }
 
-        h1 {
-            color: #d81b60;
-            font-size: 2.5rem;
-            margin-bottom: 20px;
-        }
+    .card {
+        background: rgba(255,255,255,0.2);
+        backdrop-filter: blur(12px);
+        border-radius: 20px;
+        padding: 40px;
+        text-align: center;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        animation: float 3s ease-in-out infinite;
+    }
 
-        .gif-container {
-            height: 250px;
-            margin-bottom: 20px;
-        }
+    @keyframes float {
+        0%,100% { transform: translateY(0); }
+        50% { transform: translateY(-10px); }
+    }
 
-        img {
-            max-height: 100%;
-            border-radius: 15px;
-        }
+    h1 {
+        color: #fff;
+        font-size: 2rem;
+        margin-bottom: 20px;
+    }
 
-        .buttons {
-            display: flex;
-            gap: 20px;
-            justify-content: center;
-            align-items: center;
-        }
+    img {
+        width: 200px;
+        border-radius: 15px;
+        margin-bottom: 20px;
+    }
 
-        button {
-            padding: 10px 25px;
-            font-size: 1.2rem;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: all 0.2s ease-in-out;
-        }
+    .buttons {
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+    }
 
-        #yesBtn {
-            background-color: #4caf50;
-            color: white;
-        }
+    button {
+        padding: 12px 25px;
+        font-size: 1.1rem;
+        border: none;
+        border-radius: 10px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
 
-        #noBtn {
-            background-color: #f44336;
-            color: white;
-        }
+    #yesBtn {
+        background: #00c853;
+        color: white;
+    }
 
-        /* Success message styling */
-        .hidden {
-            display: none;
-        }
-    </style>
+    #noBtn {
+        background: #ff1744;
+        color: white;
+    }
+
+    button:hover {
+        transform: scale(1.1);
+    }
+</style>
 </head>
+
 <body>
 
-    <div class="container" id="mainContainer">
-        <h1 id="question">Will you be my Valentine? ❤️</h1>
-        
-        <div class="gif-container">
-            <img id="displayGif" src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExOHp1eXF5amFvN3F5amFvN3F5amFvN3F5amFvN3F5amFvN3F5JmVwPXYxX2ludGVybmFsX2dpZl9ieV9pZCZjdD1z/cLS1cfxvGOPVpf9g3y/giphy.gif" alt="Cute GIF">
-        </div>
+<div class="card" id="card">
+    <h1 id="question">Will you be my Valentine? ❤️</h1>
 
-        <div class="buttons" id="btnGroup">
-            <button id="yesBtn">Yes</button>
-            <button id="noBtn">No</button>
-        </div>
+    <img id="gif" src="https://media.giphy.com/media/cLS1cfxvGOPVpf9g3y/giphy.gif">
+
+    <div class="buttons">
+        <button id="yesBtn">Yes 💖</button>
+        <button id="noBtn">No 😢</button>
     </div>
+</div>
 
-    <script>
-        const yesBtn = document.getElementById('yesBtn');
-        const noBtn = document.getElementById('noBtn');
-        const question = document.getElementById('question');
-        const mainContainer = document.getElementById('mainContainer');
-        const displayGif = document.getElementById('displayGif');
+<script>
+let noCount = 0;
 
-        let noCount = 0;
-        const messages = [
-            "No",
-            "Are you sure? 🥺",
-            "Pookie please... 🎀",
-            "Don't do this to me!",
-            "I'm gonna cry... 😭",
-            "You're breaking my heart",
-            "Last chance! 😤"
-        ];
+const yesBtn = document.getElementById("yesBtn");
+const noBtn = document.getElementById("noBtn");
+const gif = document.getElementById("gif");
+const card = document.getElementById("card");
 
-        // Logic for the 'No' button
-        noBtn.addEventListener('click', () => {
-            noCount++;
-            
-            // 1. Make Yes button bigger
-            const currentSize = parseFloat(window.getComputedStyle(yesBtn).fontSize);
-            yesBtn.style.fontSize = (currentSize * 1.4) + "px";
-            yesBtn.style.padding = (noCount * 10 + 10) + "px " + (noCount * 20 + 25) + "px";
+const messages = [
+    "No 😢",
+    "Are you sure? 🥺",
+    "Please... 💔",
+    "Don’t do this 😭",
+    "I’ll be sad 😞",
+    "Last chance 😤",
+    "Say Yes!!! 😡"
+];
 
-            // 2. Change the No button text
-            if (noCount < messages.length) {
-                noBtn.innerText = messages[noCount];
-            } else {
-                noBtn.innerText = "Just say Yes! 😡";
-            }
+noBtn.addEventListener("click", () => {
+    noCount++;
 
-            // 3. Optional: Change GIF to a sadder one as they keep saying no
-            if(noCount === 3) {
-                displayGif.src = "https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExOHp1eXF5amFvN3F5amFvN3F5amFvN3F5amFvN3F5JmVwPXYxX2ludGVybmFsX2dpZl9ieV9pZCZjdD1z/OPU6wUKARA8AU/giphy.gif";
-            }
-        });
+    // Grow YES button
+    yesBtn.style.transform = `scale(${1 + noCount * 0.3})`;
 
-        // Logic for the 'Yes' button
-        yesBtn.addEventListener('click', () => {
-            mainContainer.innerHTML = `
-                <h1 style="color: #d81b60;">Knew you would say yes! 🎉</h1>
-                <div class="gif-container">
-                    <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExOHp1eXF5amFvN3F5amFvN3F5amFvN3F5amFvN3F5JmVwPXYxX2ludGVybmFsX2dpZl9ieV9pZCZjdD1z/l41lTxfonv65SUp5S/giphy.gif">
-                </div>
-                <p style="font-size: 1.2rem; color: #ad1457;">You just made me the happiest person!</p>
-            `;
-            
-            // Add some confetti effect (optional)
-            document.body.style.backgroundColor = "#ffc1e3";
-        });
-    </script>
+    // Change NO text
+    noBtn.innerText = messages[Math.min(noCount, messages.length - 1)];
+
+    // Change GIF
+    if (noCount === 3) {
+        gif.src = "https://media.giphy.com/media/OPU6wUKARA8AU/giphy.gif";
+    }
+});
+
+yesBtn.addEventListener("click", () => {
+    card.innerHTML = `
+        <h1>YAYYY!!! 🎉❤️</h1>
+        <img src="https://media.giphy.com/media/l41lTxfonv65SUp5S/giphy.gif">
+        <p style="color:white; font-size:18px;">
+            You made me the happiest person 🥰
+        </p>
+    `;
+
+    document.body.style.background = "#ff4b5c";
+});
+</script>
+
 </body>
 </html>
