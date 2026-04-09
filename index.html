@@ -3,15 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>For My Valentine 💖</title>
+    <title>Reality Check 🎂</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 
     <style>
         :root {
-            --primary: #ff4b72;
-            --secondary: #ff8fa3;
-            --bg-gradient: linear-gradient(135deg, #ff9a9e 0%, #fecfef 99%, #fecfef 100%);
+            --primary: #6c5ce7; /* Party Purple */
+            --secondary: #00cec9; /* Mint Blue */
+            --bg-gradient: linear-gradient(135deg, #a8c0ff 0%, #3f2b96 100%);
         }
 
         body {
@@ -22,7 +22,7 @@
             align-items: center;
             background: var(--bg-gradient);
             font-family: 'Poppins', sans-serif;
-            overflow: hidden; /* Prevents scrollbars when button runs away */
+            overflow: hidden; 
             background-size: 400% 400%;
             animation: gradientBG 15s ease infinite;
         }
@@ -35,14 +35,14 @@
 
         /* Glassmorphism Card */
         .card {
-            background: rgba(255, 255, 255, 0.4);
+            background: rgba(255, 255, 255, 0.85);
             backdrop-filter: blur(16px);
             -webkit-backdrop-filter: blur(16px);
             border: 1px solid rgba(255, 255, 255, 0.5);
             border-radius: 24px;
             padding: 40px 30px;
             text-align: center;
-            box-shadow: 0 8px 32px 0 rgba(255, 105, 135, 0.2);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
             max-width: 90%;
             width: 400px;
             z-index: 10;
@@ -50,12 +50,11 @@
         }
 
         h1 {
-            color: #d81b60;
-            font-size: 2.2rem;
+            color: #2d3436;
+            font-size: 2rem;
             margin-top: 0;
             margin-bottom: 25px;
             font-weight: 800;
-            text-shadow: 2px 2px 4px rgba(255,255,255,0.5);
         }
 
         .gif-container {
@@ -78,20 +77,20 @@
             justify-content: center;
             align-items: center;
             gap: 20px;
-            position: relative; /* Crucial for the escaping button */
+            position: relative; 
             min-height: 60px;
         }
 
         button {
-            padding: 14px 30px;
-            font-size: 1.2rem;
+            padding: 14px 20px;
+            font-size: 1.1rem;
             font-weight: 600;
             font-family: 'Poppins', sans-serif;
             border: none;
-            border-radius: 50px;
+            border-radius: 12px;
             cursor: pointer;
             transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275), background-color 0.2s;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
         }
 
         #yesBtn {
@@ -102,17 +101,17 @@
 
         #yesBtn:hover {
             transform: scale(1.05);
-            background-color: #e91e63;
+            background-color: #5f27cd;
         }
 
         #noBtn {
-            background-color: white;
-            color: var(--primary);
-            position: relative; /* Starts relative, becomes absolute later */
+            background-color: #ff7675;
+            color: white;
+            position: relative; 
             z-index: 1;
         }
 
-        /* Shake animation for when they try to click NO */
+        /* Shake animation */
         .shake {
             animation: shake 0.4s cubic-bezier(.36,.07,.19,.97) both;
         }
@@ -124,10 +123,9 @@
             40%, 60% { transform: translate3d(6px, 0, 0); }
         }
 
-        /* Final Success State Styles */
         .success-text {
-            color: #d81b60;
-            font-size: 1.3rem;
+            color: #2d3436;
+            font-size: 1.2rem;
             font-weight: 600;
             margin-top: 20px;
             animation: fadeIn 1s ease;
@@ -142,15 +140,15 @@
 <body>
 
     <div class="card" id="card">
-        <h1 id="question">Will you be my Valentine? 🥺</h1>
+        <h1 id="question">Are you officially ancient today? 🎂</h1>
         
         <div class="gif-container">
-            <img id="gif" src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExOHp1eXF5amFvN3F5amFvN3F5amFvN3F5amFvN3F5JmVwPXYxX2ludGVybmFsX2dpZl9ieV9pZCZjdD1z/cLS1cfxvGOPVpf9g3y/giphy.gif" alt="Cute Bears">
+            <img id="gif" src="https://media.giphy.com/media/ANbD1CCdA3iI8/giphy.gif" alt="Suspicious">
         </div>
 
         <div class="buttons" id="buttonContainer">
-            <button id="yesBtn">Yes! 💖</button>
-            <button id="noBtn">No 😢</button>
+            <button id="yesBtn">Fine, I'm old 🧓</button>
+            <button id="noBtn">No, I'm forever 21! 🛑</button>
         </div>
     </div>
 
@@ -160,35 +158,33 @@
         const gif = document.getElementById('gif');
         const question = document.getElementById('question');
         const card = document.getElementById('card');
-        const buttonContainer = document.getElementById('buttonContainer');
 
         let noClickCount = 0;
         let isEvading = false;
 
-        const guiltTrips = [
-            "No 😢",
-            "Are you sure? 🥺",
-            "Pookie please... 🎀",
-            "Don't do this! 😭",
-            "You're breaking my heart 💔",
-            "I'm gonna cry... 💧",
-            "Okay, I'm playing dirty now 😈"
+        // The roast messages!
+        const roastTrips = [
+            "No, I'm forever 21! 🛑",
+            "Denial is cute. 🙄",
+            "Your back literally hurts right now. 🦴",
+            "Did you take your vitamins today? 💊",
+            "You used to have a MySpace. Stop lying. 💻",
+            "I can hear your knees clicking from here 🔊",
+            "Just accept it, grandpa/grandma! 🏃💨"
         ];
 
-        const sadGifs = [
-            "https://media.giphy.com/media/OPU6wUKARA8AU/giphy.gif", // Crying
-            "https://media.giphy.com/media/L95W4wv8nnb9K/giphy.gif", // Sad tear
-            "https://media.giphy.com/media/qQdL532ZANbjy/giphy.gif"  // Screaming crying
+        // Funny GIFs as they keep denying their age
+        const teaseGifs = [
+            "https://media.giphy.com/media/1Qdp4trljSkY8/giphy.gif", // Laughing
+            "https://media.giphy.com/media/l0IyajjbNiRvCr7RC/giphy.gif", // Grandma
+            "https://media.giphy.com/media/jp313yHGzTDBbw5Tg6/giphy.gif"  // Laughing pointing
         ];
 
-        // Function to make the NO button jump away
         function evadeCursor() {
             if (!isEvading) return;
             
-            // Switch button to fixed positioning so it can go anywhere on screen
             noBtn.style.position = 'fixed';
             
-            // Calculate safe boundaries so the button doesn't go off-screen
             const maxX = window.innerWidth - noBtn.offsetWidth - 20;
             const maxY = window.innerHeight - noBtn.offsetHeight - 20;
             
@@ -201,42 +197,40 @@
 
         // Handle the NO button logic
         function handleNoClick(e) {
-            e.preventDefault(); // Prevent accidental double taps on mobile
+            e.preventDefault(); 
             noClickCount++;
 
-            // 1. Shake the card
+            // Shake the card
             card.classList.remove('shake');
-            void card.offsetWidth; // Trigger reflow to restart animation
+            void card.offsetWidth; 
             card.classList.add('shake');
 
-            // 2. Change text
-            if (noClickCount < guiltTrips.length) {
-                noBtn.innerText = guiltTrips[noClickCount];
+            // Change text to roast them
+            if (noClickCount < roastTrips.length) {
+                noBtn.innerText = roastTrips[noClickCount];
             }
 
-            // 3. Change GIF to something sadder
-            if (noClickCount === 2) gif.src = sadGifs[0];
-            if (noClickCount === 4) gif.src = sadGifs[1];
+            // Cycle through tease GIFs
+            if (noClickCount === 2) gif.src = teaseGifs[0];
+            if (noClickCount === 4) gif.src = teaseGifs[1];
 
-            // 4. Make YES button bigger
-            const currentScale = 1 + (noClickCount * 0.2);
+            // Make YES button bigger
+            const currentScale = 1 + (noClickCount * 0.15);
             yesBtn.style.transform = `scale(${currentScale})`;
 
-            // 5. Activate "Evasion Mode" after 5 tries
+            // Activate "Evasion Mode" after 5 tries
             if (noClickCount >= 5) {
                 isEvading = true;
-                gif.src = sadGifs[2];
-                noBtn.innerText = "Catch me! 🏃💨";
+                gif.src = teaseGifs[2];
+                noBtn.innerText = "Can't catch youth! 🏃💨";
                 evadeCursor();
             }
         }
 
-        // Add both click and mouseover for maximum difficulty
         noBtn.addEventListener('click', handleNoClick);
         noBtn.addEventListener('mouseover', () => {
             if (isEvading) evadeCursor();
         });
-        // For mobile users tapping
         noBtn.addEventListener('touchstart', (e) => {
             if (isEvading) {
                 e.preventDefault();
@@ -245,26 +239,27 @@
         }, {passive: false});
 
 
-        // Handle the YES button logic
+        // Handle the YES button logic (The real birthday wish!)
         yesBtn.addEventListener('click', () => {
-            // Trigger Confetti explosion
-            var duration = 3 * 1000;
+            
+            // Massive Multi-colored Confetti explosion
+            var duration = 4 * 1000;
             var end = Date.now() + duration;
 
             (function frame() {
                 confetti({
-                    particleCount: 5,
+                    particleCount: 8,
                     angle: 60,
                     spread: 55,
                     origin: { x: 0 },
-                    colors: ['#ff4b72', '#ff8fa3', '#ffffff']
+                    colors: ['#6c5ce7', '#00cec9', '#fd79a8', '#ffeaa7', '#00b894']
                 });
                 confetti({
-                    particleCount: 5,
+                    particleCount: 8,
                     angle: 120,
                     spread: 55,
                     origin: { x: 1 },
-                    colors: ['#ff4b72', '#ff8fa3', '#ffffff']
+                    colors: ['#6c5ce7', '#00cec9', '#fd79a8', '#ffeaa7', '#00b894']
                 });
 
                 if (Date.now() < end) {
@@ -272,20 +267,20 @@
                 }
             }());
 
-            // Update UI
+            // Update UI to the sweet Birthday Wish
             card.innerHTML = `
-                <h1 style="margin-bottom: 10px;">YAYYY!!! 🎉</h1>
+                <h1 style="color: #6c5ce7; font-size: 2.5rem;">HAPPY BIRTHDAY! 🎉</h1>
                 <div class="gif-container" style="height: 250px;">
-                    <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExOHp1eXF5amFvN3F5amFvN3F5amFvN3F5amFvN3F5JmVwPXYxX2ludGVybmFsX2dpZl9ieV9pZCZjdD1z/l41lTxfonv65SUp5S/giphy.gif" alt="Happy Bears">
+                    <img src="https://media.giphy.com/media/LZwCGX8fPTscI/giphy.gif" alt="Party!">
                 </div>
                 <div class="success-text">
-                    You just made me the happiest person! 🥰<br>
-                    Get ready for the best date ever.
+                    Just kidding! You're aging like fine wine. 🍷<br><br>
+                    Hope you have the absolute best day ever! Let's celebrate! 🥳🎁
                 </div>
             `;
             
-            // Make the background a solid romantic color
-            document.body.style.background = "#ff4b72";
+            // Change background to a festive yellow/orange vibe
+            document.body.style.background = "linear-gradient(135deg, #f6d365 0%, #fda085 100%)";
             document.body.style.animation = "none";
         });
     </script>
